@@ -93,7 +93,7 @@ module Squash::Ruby::ControllerMethods
   def squash_rails_data
     flash_hash = (flash.respond_to?(:to_h) ? flash.to_h : flash.to_hash).stringify_keys
     filtered_params = request.respond_to?(:filtered_parameters) ? request.filtered_parameters : filter_parameters(params)
-    headers_hash = request.headers.respond_to?(:to_h) ? request.headers.to_h : request.headers.to_hash
+    headers_hash = request.headers.respond_to?(:to_hash) ? request.headers.to_hash : request.env.to_h
     session_hash = session.respond_to?(:to_h) ? session.to_h : session.to_hash
     {
         :environment    => Rails.env.to_s,
